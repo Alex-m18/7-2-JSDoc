@@ -9,7 +9,7 @@ test('should return right character', () => {
     attack: 25,
     defence: 25,
   };
-  expect(Character('vasya', 'Bowman')).toMatchObject(expected);
+  expect(new Character('vasya', 'Bowman')).toMatchObject(expected);
 });
 
 test('should return right character', () => {
@@ -21,7 +21,7 @@ test('should return right character', () => {
     attack: 40,
     defence: 10,
   };
-  expect(Character('vasya', 'Swordsman')).toMatchObject(expected);
+  expect(new Character('vasya', 'Swordsman')).toMatchObject(expected);
 });
 
 test('should return right character', () => {
@@ -33,7 +33,7 @@ test('should return right character', () => {
     attack: 10,
     defence: 40,
   };
-  expect(Character('vasya', 'Magician')).toMatchObject(expected);
+  expect(new Character('vasya', 'Magician')).toMatchObject(expected);
 });
 
 test('should return right character', () => {
@@ -45,7 +45,7 @@ test('should return right character', () => {
     attack: 25,
     defence: 25,
   };
-  expect(Character('vasya', 'Undead')).toMatchObject(expected);
+  expect(new Character('vasya', 'Undead')).toMatchObject(expected);
 });
 
 test('should return right character', () => {
@@ -57,7 +57,7 @@ test('should return right character', () => {
     attack: 40,
     defence: 10,
   };
-  expect(Character('vasyavasya', 'Zombie')).toMatchObject(expected);
+  expect(new Character('vasyavasya', 'Zombie')).toMatchObject(expected);
 });
 
 test('should return right character', () => {
@@ -69,19 +69,21 @@ test('should return right character', () => {
     attack: 10,
     defence: 40,
   };
-  expect(Character('va', 'Daemon')).toMatchObject(expected);
+  expect(new Character('va', 'Daemon')).toMatchObject(expected);
 });
 
 test('should throw', () => {
-  expect(() => Character('v', 'Bowman')).toThrow();
-  expect(() => Character('v1234567890', 'Bowman')).toThrow();
-  expect(() => Character('vasya', 'Bowman123')).toThrow();
+  expect(() => new Character('v', 'Bowman')).toThrow();
+  expect(() => new Character('v1234567890', 'Bowman')).toThrow();
+  expect(() => new Character('vasya', 'Bowman123')).toThrow();
 });
 
 test('should damage', () => {
-  const character = Character('vasya', 'Daemon');
+  const character = new Character('vasya', 'Daemon');
   character.damage(100);
   expect(character.health).toBe(40);
   character.damage(10);
   expect(character.health).toBe(34);
+  character.damage(100);
+  expect(character.health).toBe(0);
 });
